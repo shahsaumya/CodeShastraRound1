@@ -1,7 +1,6 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 from disaster import views
-from django.conf.urls.static import static
 from rest_framework.urlpatterns import format_suffix_patterns
 urlpatterns = [
     # Examples:
@@ -17,10 +16,3 @@ urlpatterns = [
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
-<<<<<<< HEAD
-
-if settings.DEBUG:
-	urlpatterns += static(settings.STATIC_URL,document_root = settings.STATIC_ROOTT)
-	
-=======
->>>>>>> c75a2747164eb742dbcb06e80cd9ca197b855fcd

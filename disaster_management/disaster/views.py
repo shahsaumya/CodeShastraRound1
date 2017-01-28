@@ -61,3 +61,18 @@ class PersonList(APIView):
 	
 
 # Create your views here.
+def packages(request):
+        return render(request, 'index.html')
+
+def index(request):
+        return render(request, 'index.html')
+
+def disaster(request):
+        return render(request, 'template-alerts.html')
+
+def about(request):
+        return render(request, 'about.html')
+
+def register(request):
+        return render(request, 'customer-register.html')
+
