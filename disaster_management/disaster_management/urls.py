@@ -8,6 +8,11 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^index/', views.index),
+    url(r'^disaster/', views.disaster),
+    url(r'^about/', views.about),
+    url(r'^donate/', views.packages),
+    url(r'^login/', views.register),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
