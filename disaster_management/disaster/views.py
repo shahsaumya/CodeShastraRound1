@@ -64,6 +64,9 @@ class PersonList(APIView):
 def packages(request):
         return render(request, 'index.html')
 
+def animate(request):
+        return render(request, 'animate.html')
+
 def index(request):
         return render(request, 'index.html')
 

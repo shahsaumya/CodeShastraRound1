@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^about/', views.about),
     url(r'^donate/', views.packages),
     url(r'^login/', views.register),
+    url(r'^animate/', views.animate),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
