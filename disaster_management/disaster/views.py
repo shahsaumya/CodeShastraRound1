@@ -89,7 +89,14 @@ class PersonList(APIView):
 	
 
 # Create your views here.
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> 4257bea1432a5ac4b51143ec63dce24ddb4ea4ac
+>>>>>>> 5c2b220970ffe2e77b521e8faa5031d1b887f44c
 def packages(request):
         return render(request, 'index.html')
 
@@ -107,4 +114,11 @@ def about(request):
 
 def register(request):
         return render(request, 'customer-register.html')
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 5c2b220970ffe2e77b521e8faa5031d1b887f44c
 
+
+=======
+>>>>>>> 4257bea1432a5ac4b51143ec63dce24ddb4ea4ac
