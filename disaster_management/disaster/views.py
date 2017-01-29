@@ -6,10 +6,11 @@ from django.shortcuts import get_object_or_404, render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from disaster.models import Person
+from disaster.models import Person,HelpGiver,HelpSeeker
 from disaster.serializers import PersonSerializer
 from django.http import Http404
 from django.core import serializers
+from pushy import PushyAPI
 
 #class PeList(APIView):
 
@@ -26,7 +27,16 @@ from django.core import serializers
     #        return Response(serializer.data, status=status.HTTP_201_CREATED)
     #    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)	
 
- 
+ def help(request):
+ 	details = requests.get(url)
+ 	GroupDetails.objects.create(data_token=details[token],number=details[number],lat=details[lat],lon=details[lon])
+ 	obj = GroupDetails.objects.get(data_token=details[token])
+ 	for user in details[users]:
+ 		IndividualDetails.objects.create(name=user['name'],age=user['age'],gender=user['gender'],key=obj.id)
+    return render(request,'.html')
+
+
+
 
 
 
@@ -61,3 +71,4 @@ class PersonList(APIView):
 	
 
 # Create your views here.
+
