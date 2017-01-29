@@ -5,4 +5,5 @@ from django.forms import Textarea
 class Register(forms.ModelForm):
 	fname = forms.CharField(widget = forms.TextInput(attrs = {'class':"input",'size':"40"}))
 	lname = forms.CharField(widget = forms.TextInput(attrs = {'class':"input",'size':"40"}))
+	phone = forms.In
 	password = forms.CharField(widget  = forms.PasswordInput())
