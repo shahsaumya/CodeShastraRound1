@@ -51,7 +51,7 @@ def search(request):
 
 		if fly!=None:		
 			fly.capacity=fly.capacity-group	
-			data = {'name': fly.name,'address':fly.address,'lat':fly.lat,'lon':fly.lon}
+			data = {'type':'Shelter','name': fly.name,'address':fly.address,'lat':fly.lat,'lon':fly.lon}
 			PushyAPI.sendPushNotification(data, group.data_token)
 
 
