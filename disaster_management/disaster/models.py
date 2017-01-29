@@ -9,7 +9,7 @@ class Person(models.Model):
 	disaster = models.CharField(max_length = 20,default='')
 	lat = models.FloatField()
 	lon = models.FloatField()
-	data_token=models.BigIntegerField(default=None)
+	data_token=models.CharField(default=None,max_length=100)
 
 class HelpGiver(models.Model):
 	name = models.CharField(max_length = 30,default='')

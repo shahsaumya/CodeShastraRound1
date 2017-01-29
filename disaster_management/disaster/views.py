@@ -52,15 +52,15 @@ def search(request):
 					fly=family
 
 		if fly!=None:		
-			fly.capacity=fly.capacity-group	
+			fly.capacity=fly.capacity-group.length
 			data = {'type':'Shelter','name': fly.name,'address':fly.address,'lat':fly.lat,'lon':fly.lon}
 			PushyAPI.sendPushNotification(data, group.data_token)
+
 
 def send(request):
 	persons=Person.objects.order_by("id")
 	for person in persons:
-		if disaster!='':
-
+		if person.disaster!='':
 			data={'disaster':person.disaster,'lat':person.lat,'lon':person.lon}
 			PushyAPI.sendPushNotification(data, person.data_token)
 
@@ -92,19 +92,30 @@ class PersonList(APIView):
 			return Response(serializer.data)
 		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  	
 
-	#def post(self, request):
-    #    serializer = TeamSerializer(data=request.data)
-    #    if serializer.is_valid():
-    #        serializer.save()
-    #        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    #    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)	
+	def post(self, request):
+		serializer = PersonSerializer(data=request.data)
+		if serializer.is_valid():
+			serializer.save()
+			return Response(serializer.data, status=status.HTTP_201_CREATED)
+		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)	
 	
 
 # Create your views here.
-<<<<<<< HEAD
 
-=======
->>>>>>> e9baed590c3d2367785b7780ae584c6673e132b6
+def location(request):
+	persons=Person.objects.order_by("id")
+	list=[]
+	for person in persons:
+		if person.disaster!='':
+			list.append([person.lat,person.lon])
+	return render(request, 'test.html', {'list': list}) 		
+
+
+
+
+
+
+
 def packages(request):
         return render(request, 'index.html')
 
@@ -122,8 +133,5 @@ def about(request):
 
 def register(request):
         return render(request, 'customer-register.html')
-<<<<<<< HEAD
 
-=======
->>>>>>> e9baed590c3d2367785b7780ae584c6673e132b6
 
