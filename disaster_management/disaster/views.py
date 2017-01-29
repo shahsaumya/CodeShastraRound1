@@ -35,6 +35,8 @@ def help(request):
 		IndividualDetails.objects.create(name=user['name'],age=user['age'],gender=user['gender'],key=obj.id)
 	return render(request,'.html')
 
+
+
 def search(request):
 	seekerList=GroupDetails.objects.order_by("id")
 	giverList=HelpGiver.details.order_by("id")
@@ -53,6 +55,16 @@ def search(request):
 			fly.capacity=fly.capacity-group	
 			data = {'type':'Shelter','name': fly.name,'address':fly.address,'lat':fly.lat,'lon':fly.lon}
 			PushyAPI.sendPushNotification(data, group.data_token)
+
+def send(request):
+	persons=Person.objects.order_by("id")
+	for person in persons:
+		if disaster!='':
+
+			data={'disaster':person.disaster,'lat':person.lat,'lon':person.lon}
+			PushyAPI.sendPushNotification(data, person.data_token)
+
+
 
 
 
@@ -89,14 +101,7 @@ class PersonList(APIView):
 	
 
 # Create your views here.
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> 4257bea1432a5ac4b51143ec63dce24ddb4ea4ac
->>>>>>> 5c2b220970ffe2e77b521e8faa5031d1b887f44c
 def packages(request):
         return render(request, 'index.html')
 
@@ -114,11 +119,5 @@ def about(request):
 
 def register(request):
         return render(request, 'customer-register.html')
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 5c2b220970ffe2e77b521e8faa5031d1b887f44c
 
 
-=======
->>>>>>> 4257bea1432a5ac4b51143ec63dce24ddb4ea4ac
