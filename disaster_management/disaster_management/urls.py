@@ -10,6 +10,7 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
+<<<<<<< HEAD
 
     #url(r'^index/', views.index),
     #url(r'^disaster/', views.disaster),
@@ -17,13 +18,18 @@ urlpatterns = [
     #url(r'^donate/', views.packages),
     #url(r'^login/', views.register),
 
+=======
+>>>>>>> 4257bea1432a5ac4b51143ec63dce24ddb4ea4ac
     url(r'^index/', views.index),
     url(r'^disaster/', views.disaster),
     url(r'^about/', views.about),
     url(r'^donate/', views.packages),
     url(r'^login/', views.register),
     url(r'^animate/', views.animate),
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4257bea1432a5ac4b51143ec63dce24ddb4ea4ac
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
