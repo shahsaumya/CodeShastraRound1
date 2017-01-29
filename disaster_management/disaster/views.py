@@ -28,11 +28,11 @@ from pushy import PushyAPI
     #    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)	
 
 def help(request):
- 	details = requests.get(url)
- 	GroupDetails.objects.create(data_token=details[token],number=details[number],lat=details[lat],lon=details[lon])
- 	obj = GroupDetails.objects.get(data_token=details[token])
- 	for user in details[users]:
- 		IndividualDetails.objects.create(name=user['name'],age=user['age'],gender=user['gender'],key=obj.id)
+	details = requests.get(url)
+	GroupDetails.objects.create(data_token=details[token],number=details[number],lat=details[lat],lon=details[lon])
+	obj = GroupDetails.objects.get(data_token=details[token])
+	for user in details[users]:
+		IndividualDetails.objects.create(name=user['name'],age=user['age'],gender=user['gender'],key=obj.id)
 	return render(request,'.html')
 
 def search(request):
@@ -51,23 +51,8 @@ def search(request):
 
 		if fly!=None:		
 			fly.capacity=fly.capacity-group	
-        	data = {'name': fly.name,'address':fly.address,'lat':fly.lat,'lon':fly.lon}
-        	PushyAPI.sendPushNotification(data, group.data_token)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+			data = {'type':'Shelter','name': fly.name,'address':fly.address,'lat':fly.lat,'lon':fly.lon}
+			PushyAPI.sendPushNotification(data, group.data_token)
 
 
 
@@ -104,10 +89,7 @@ class PersonList(APIView):
 	
 
 # Create your views here.
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
+
 def packages(request):
         return render(request, 'index.html')
 
@@ -125,6 +107,4 @@ def about(request):
 
 def register(request):
         return render(request, 'customer-register.html')
->>>>>>> 5a158cfdf4331d41e025a20e6d3baae98dba0767
->>>>>>> 8c35c01391c86de3b2a9e9f211b6e06f682fc8e6
 

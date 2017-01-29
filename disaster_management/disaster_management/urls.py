@@ -10,20 +10,23 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-<<<<<<< HEAD
+
+
     #url(r'^index/', views.index),
     #url(r'^disaster/', views.disaster),
     #url(r'^about/', views.about),
     #url(r'^donate/', views.packages),
     #url(r'^login/', views.register),
-=======
+    
+    url(r'^register/', views.register),
     url(r'^index/', views.index),
     url(r'^disaster/', views.disaster),
     url(r'^about/', views.about),
     url(r'^donate/', views.packages),
-    url(r'^login/', views.register),
+
     url(r'^animate/', views.animate),
->>>>>>> 8c35c01391c86de3b2a9e9f211b6e06f682fc8e6
+    url(r'^template-alerts/', views.disaster),
+
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
