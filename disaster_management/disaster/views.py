@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404, render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from disaster.models import Person,HelpGiver,HelpSeeker
+from disaster.models import Person,HelpGiver,IndividualDetails,GroupDetails
 from disaster.serializers import PersonSerializer
 from django.http import Http404
 from django.core import serializers
@@ -27,13 +27,46 @@ from pushy import PushyAPI
     #        return Response(serializer.data, status=status.HTTP_201_CREATED)
     #    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)	
 
- def help(request):
+def help(request):
  	details = requests.get(url)
  	GroupDetails.objects.create(data_token=details[token],number=details[number],lat=details[lat],lon=details[lon])
  	obj = GroupDetails.objects.get(data_token=details[token])
  	for user in details[users]:
  		IndividualDetails.objects.create(name=user['name'],age=user['age'],gender=user['gender'],key=obj.id)
-    return render(request,'.html')
+	return render(request,'.html')
+
+def search(request):
+	seekerList=GroupDetails.objects.order_by("id")
+	giverList=HelpGiver.details.order_by("id")
+	distance_min=0
+
+	for group in seekerList:
+		fly=None
+		for family in giverList:
+			if family[capacity]>=group[number]:
+				json = requests.get("https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=19.0815, 72.8377&destinations=19.1155, 72.8727&key=AIzaSyCvCg-Ed0uayEUcNWIgVb_6pRV8imB5kEM")
+				distance=json[rows][elements][distance][value]
+				if (distance<distance_min):
+					fly=family
+
+		if fly!=None:		
+			fly.capacity=fly.capacity-group	
+        	data = {'name': fly.name,'address':fly.address,'lat':fly.lat,'lon':fly.lon}
+        	PushyAPI.sendPushNotification(data, group.data_token)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -73,6 +106,8 @@ class PersonList(APIView):
 # Create your views here.
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
 def packages(request):
         return render(request, 'index.html')
 
@@ -91,4 +126,5 @@ def about(request):
 def register(request):
         return render(request, 'customer-register.html')
 >>>>>>> 5a158cfdf4331d41e025a20e6d3baae98dba0767
+>>>>>>> 8c35c01391c86de3b2a9e9f211b6e06f682fc8e6
 
