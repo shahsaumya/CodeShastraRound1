@@ -18,6 +18,15 @@ class HelpGiver(models.Model):
 	lon = models.FloatField(default=None)
 
 
+class IndividualDetails(models.Model):
+	name=models.CharField(max_length=30,default='')
+	age=models.IntegerField(default=None)
+	gender=models.BooleanField(default=None)
+	key=models.IntegerField(default=None)	
+
+
+
+
 class GroupDetails(models.Model):
 	data_token=models.BigIntegerField(default=None)
 	number=models.IntegerField(default=None)
@@ -25,13 +34,6 @@ class GroupDetails(models.Model):
 	lon = models.FloatField(default=None)
 	individuals=models.ForeignKey(IndividualDetails,on_delete=models.CASCADE,default=None)
 	
-
-class IndividualDetails(models.Model):
-	name=models.CharField(max_length=30,default='')
-	age=models.IntegerField(default=None)
-	gender=models.BooleanFiled(default=None)
-	key=models.IntegerField(default=None)	
-
 
 
 
